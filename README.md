@@ -87,6 +87,3 @@ curl -X  PUT https://recipes-app.azurewebsites.net/api/recipe/11 \
            "directions": ["Boil water", "Pour boiling hot water into a mug", "Add fresh mint leaves", "Mix and let the mint leaves seep for 3-5 minutes", "Add honey and mix again"]
          }'
 </pre>
-
-
-### Need improvement:
