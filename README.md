@@ -8,6 +8,7 @@ https://recipes-app.azurewebsites.net/
 
 
 ### Features:
+- Java 11
 - Only authenticated user can add, view, search recipes.
 - Only owner can edit, delete a recipe.
 
