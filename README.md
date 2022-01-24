@@ -28,7 +28,8 @@ https://recipes-app.azurewebsites.net/
 ### Routes:
 <pre>
 GET /api/recipe/{id}
-GET /api/recipe/search?category={category}&&name={name}
+GET /api/recipe/search?category={category}
+GET /api/recipe/search?name={name}
 
 POST /api/register
 POST /api/recipe/new
