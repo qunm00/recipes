@@ -25,23 +25,23 @@ public class Recipe {
     @JsonIgnore
     private User owner;
 
-    @NotBlank
+    @NotBlank(message="Recipe must have name")
     private String name;
 
-    @NotBlank
+    @NotBlank(message="Recipe must have description")
     private String description;
 
-    @NotBlank
+    @NotBlank(message="Recipe must have category")
     private String category;
 
     @ElementCollection
-    @NotNull
-    @Size(min = 1)
+    @NotNull(message="Recipe must have ingredients")
+    @Size(min = 1, message="A recipe must have at least 1 ingredient")
     private List<String> ingredients;
 
     @ElementCollection
-    @NotNull
-    @Size(min = 1)
+    @NotNull(message="Recipe must have directions")
+    @Size(min = 1, message="A recipe must have at least 1 direction")
     private List<String> directions;
 
     public Recipe() { }

@@ -27,9 +27,9 @@ public class RecipeService {
 //    }
 
     public boolean isOwner(User user, Recipe recipe) {
-        if (recipe.getOwner() == null) {
-            return true;
-        }
+//        if (recipe.getOwner() == null) {
+//            return true;
+//        }
         return recipe.getOwner().equals(user);
     }
 
@@ -44,7 +44,10 @@ public class RecipeService {
         if (this.recipeRepository.existsById(id)) {
             return this.recipeRepository.findById(id);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    String.format("Recipe with id %s doesn't exists", id)
+            );
         }
     }
 
@@ -53,7 +56,10 @@ public class RecipeService {
         if (isOwner(user, recipe)) {
             this.recipeRepository.deleteById(id);
         } else {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    String.format("User %s isn't owner of recipe with id %s", user.getEmail(), id)
+            );
         }
     }
 
@@ -63,7 +69,10 @@ public class RecipeService {
             newRecipe.setId(id);
             this.recipeRepository.save(newRecipe);
         } else {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    String.format("User %s isn't owner of recipe with id %s", user.getEmail(), id)
+            );
         }
     }
 

@@ -11,11 +11,11 @@ import java.util.Objects;
 @Entity
 public class User implements UserDetails {
     @Id
-    @Pattern(regexp = "\\w*@\\w*\\.\\w*")
+    @Pattern(regexp = "\\w*@\\w*\\.\\w*", message="Invalid email format")
     private String email;
 
-    @Size(min = 8)
-    @NotBlank
+    @Size(min = 8, message="Password minimum length is 8")
+    @NotBlank(message="Password can't be blank")
     private String password;
 
     public User() { }

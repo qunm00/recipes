@@ -2,6 +2,7 @@ package recipes.businesslayer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,10 @@ public class UserService implements UserDetailsService {
 
     public void save(User user) {
         if (this.userRepository.existsById(user.getEmail())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "user already registered"
+            );
         }
         user.setPassword(securityConfiguration.getEncoder().encode(user.getPassword()));
         this.userRepository.save(user);
